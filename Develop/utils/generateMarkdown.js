@@ -1,51 +1,62 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-
-const { default: Choices } = require("inquirer/lib/objects/choices");
-const { default: CheckboxPrompt } = require("inquirer/lib/prompts/checkbox");
-
-// If there is no license, return an empty string
 function renderLicenseBadge(license) {
-  if(license === 'MIT License') {
-    return 'https://img.shields.io/badge/License-MIT-yellow.svg'
-  } else if (license === 'ISC License') {
-    return 'https://img.shields.io/badge/License-ISC-blue.svg'
-  } else (license === 'WTFPL License'); {
-    return 'https://img.shields.io/badge/License-WTFPL-brightgreen.svg'
+  if (license === "MIT License") {
+    return "https://img.shields.io/badge/License-MIT-yellow.svg";
+  } else if (license === "ISC License") {
+    return "https://img.shields.io/badge/License-ISC-blue.svg";
+  } else if (license === "PEARL License") {
+    return "https://img.shields.io/badge/License-Perl-0298c3.svg";
+  } else if (license === "MOZILLA License") {
+    return "https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg";
+  } else if (license === "ECLIPSE License") {
+    return "https://img.shields.io/badge/License-EPL_1.0-red.svg";
+  } else license === "WTFPL License";
+  {
+    return "https://img.shields.io/badge/License-WTFPL-brightgreen.svg";
   }
-
 }
 
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+function noLicense(license) {
+  if (license === "No License") {
+    return "";
+  }
+}
+
 function renderLicenseLink(license) {
-  if(license === 'MIT License') {
-    return 'https://opensource.org/licenses/MIT'
-  } else if (license === 'ISC License') {
-    return '(https://opensource.org/licenses/ISC'
-  } else (license === 'WTFPL License'); {
-    return 'http://www.wtfpl.net/about/'
+  if (license === "MIT License") {
+    return "https://opensource.org/licenses/MIT";
+  } else if (license === "ISC License") {
+    return "https://opensource.org/licenses/ISC";
+  } else if (license === "PEARL License") {
+    return "https://opensource.org/licenses/Artistic-2.0";
+  } else if (license === "MOZILLA License") {
+    return "https://opensource.org/licenses/ISC";
+  } else if (license === "ECLIPSE License") {
+    return "https://opensource.org/licenses/EPL-1.0";
+  } else license === "WTFPL License";
+  {
+    return "http://www.wtfpl.net/about/";
   }
-
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
 function renderLicenseSection(license) {
-  return license === 'No License'
-  ? ''
-  : `[![License:${license}](${renderLicenseBadge(license)})](${renderLicenseLink(license)})`
+  return license === "No License"
+    ? ""
+    : `[![License:${license}](${renderLicenseBadge(
+        license
+      )})](${renderLicenseLink(license)})`;
 }
 
-// TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}\n
-  ${renderLicenseSection(data.license)}
+  const tableOptions = data.table.map((option) => option);
+  return `# ${data.title}
+  // ${renderLicenseSection(data.license)}
+  // ${noLicense(data.license)}
   ## Description
   ---
   ${data.description}
   ## Table of Contents
   ---
-  ${choices.table}
+  ${tableOptions}
   ## Installation
   ---
   ${data.install}
@@ -53,7 +64,7 @@ function generateMarkdown(data) {
   ---
   ![]()
   ## Usage
-
+  ---
   ${data.usage}
   ## Contributions
   ---
@@ -61,11 +72,11 @@ function generateMarkdown(data) {
   ## Testing
   ---
   ${data.test}
-  ##Questions
+  ## Questions
   ---
   [Github](https://github.com/${data.user}/)
   Email: ${data.email}
-`;
+  `;
 }
 
 module.exports = generateMarkdown;
