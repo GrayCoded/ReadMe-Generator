@@ -7,7 +7,7 @@ function writeToFile(fileName, data) {
     if (error) {
       throw error;
     } else {
-      console.log(`File saved successfully! Check the folder.`);
+      console.log(`Your file has been created successfully!`);
     }
   });
 }
@@ -44,7 +44,15 @@ const questions = [
   {
     type: "list",
     message: "License",
-    choices: ["MIT License", "ISC License", "WTFPL License", "No License"],
+    choices: [
+      "MIT License",
+      "ISC License",
+      "Pearl License",
+      "MOZILLA License",
+      "ECLIPSE License",
+      "WTFPL License",
+      "No License",
+    ],
     name: "license",
   },
   {
